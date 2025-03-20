@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View users</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            body {
+    background-image: url('admin_pic.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+    backdrop-filter: brightness(0.8); /* Adds a subtle dark overlay for better text readability */
+}
+            
+        }
+        
+
+        /* Main container styling */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Header styling */
+        .header {
+            width: 100%;
+            background-color: #8BC34A;
+            color: white;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        /* Form box styling */
+        .form-box {
+            width: 50%;
+            max-width: 600px;
+            border: 2px solid black;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            gap: 1rem;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Input and button styling */
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .upload-button {
+            background-color: #FFEB3B;
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            width: 100px;
+            align-self: center;
+            margin-top: 1rem;
+        }
+
+        .upload-button:hover {
+            background-color: #FDD835;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        Add new Admin
+    </div>
+    <div class="form-box">
+        <label for="name">NAME</label>
+        <input type="text" id="name" name="name" placeholder="Enter chef's name">
+
+        <label for="description">Email:</label>
+        <input type="text" id="description" name="description" placeholder="Enter email">
+
+        <label for="description">Password:</label>
+        <input type="text" id="description" name="description" placeholder="Enter password">
+
+        <label for="price-per-thali">Confirm Password:</label>
+        <input type="number" id="price-per-thali" name="price-per-thali" placeholder="Enter confirm password">
+
+        <label for="price-monthly">Phone:</label>
+        <input type="number" id="price-monthly" name="price-monthly" placeholder="Enter phone">
+
+
+        <button class="upload-button">Add new Admin</button>
+    </div>
+</div>
+
+</body>
+</html>

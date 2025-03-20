@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Payment Page</title>
+    <style>
+        /* Basic styles for form layout */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .col {
+            width: 48%;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .inputBox {
+            margin-bottom: 15px;
+        }
+
+        .inputBox label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .inputBox input,
+        .inputBox select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .inputBox img {
+            width: 100%;
+            max-width: 250px;
+            margin-top: 10px;
+        }
+
+        .submit_btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit_btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="payment-form" action="https://script.google.com/macros/s/AKfycbxk-OxPiyFWSgQ7krMGTu1EOINq0EV_CbznxIzaLQDxizuZJELFbuWoxyO-0rE53ZNsWQ/exec" method="POST">
+            <div class="row">
+                <div class="col">
+                    <h3 class="title">
+                        Billing Address
+                    </h3>
+
+                    <div class="inputBox">
+                        <label for="name">Full Name:</label>
+                        <input type="text" name="name" id="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Enter email address" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" id="address" placeholder="Enter address" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="city">City:</label>
+                        <input type="text" name="city" id="city" placeholder="Enter city" required>
+                    </div>
+
+                    <div class="flex">
+                        <div class="inputBox">
+                            <label for="state">State:</label>
+                            <input type="text" name="state" id="state" placeholder="Enter state" required>
+                        </div>
+
+                        <div class="inputBox">
+                            <label for="zip">Zip Code:</label>
+                            <input type="number" name="zip" id="zip" placeholder="123 456" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <h3 class="title">Payment</h3>
+
+                    <div class="inputBox">
+                        <label for="name">Card Accepted:</label>
+                        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240715140014/Online-Payment-Project.webp"
+                            alt="credit/debit card image">
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="cardName">Name On Card:</label>
+                        <input type="text" id="cardName" name="cardName" placeholder="Enter card name" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="cardNum">Credit Card Number:</label>
+                        <input type="text" id="cardNum" name="cardNum" placeholder="1111-2222-3333-4444" maxlength="19" required>
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="exp-month">Exp Month:</label>
+                        <select name="expMonth" id="exp-month" required>
+                            <option value="">Choose month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+
+                    <div class="flex">
+                        <div class="inputBox">
+                            <label for="exp-year">Exp Year:</label>
+                            <select name="expYear" id="exp-year" required>
+                                <option value="">Choose Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+                        </div>
+
+                        <div class="inputBox">
+                            <label for="cvv">CVV</label>
+                            <input type="number" name="cvv" id="cvv" placeholder="1234" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" value="Proceed to Checkout" class="submit_btn">
+        </form>
+    </div>
+</body>
+
+</html>

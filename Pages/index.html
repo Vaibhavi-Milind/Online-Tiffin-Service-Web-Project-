@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="index.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("a3LP4Ly84WbkVrKrD");
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="home.php" class="btn btn-secondary mt-2 ml-2">Back</a>
+    <div class="container border mt-3 bg-light">
+      <div class="row">
+        <div class="col-md-6 p-5 bg-primary text-white">
+          <h1>Hi there!</h1>
+        </div>
+        <div class="col-md-6 border-left py-3">
+          <h1>Pay Now!!</h1>
+          <form id="contactPaymentForm">
+            <!-- Contact Details -->
+            <div class="form-group">
+              <h5 for="name">Name</h5>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <h5 for="email">Email</h5>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <h5 for="message">Message</h5>
+              <textarea
+                class="form-control"
+                id="message"
+                rows="3"
+                placeholder="Your message"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Payment Details -->
+            <h1>Payment Information</h1>
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phoneNumber"
+                placeholder="Enter phone number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Payment Option</label>
+              <div>
+                <input
+                  type="radio"
+                  id="upi"
+                  name="paymentOption"
+                  value="upi"
+                  required
+                />
+                <label for="upi">UPI</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="creditCard"
+                  name="paymentOption"
+                  value="creditCard"
+                />
+                <label for="creditCard">Credit Card</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="netBanking"
+                  name="paymentOption"
+                  value="netBanking"
+                />
+                <label for="netBanking">Net Banking</label>
+              </div>
+            </div>
+
+            <!-- UPI Fields -->
+            <div id="upiFields" class="paymentFields" style="display: none;">
+              <div class="form-group">
+                <label for="upiId">UPI ID</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="upiId"
+                  placeholder="Enter UPI ID"
+                />
+              </div>
+            </div>
+
+            <!-- Credit Card Fields -->
+            <div
+              id="creditCardFields"
+              class="paymentFields"
+              style="display: none;"
+            >
+              <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cardNumber"
+                  placeholder="Enter card number"
+                />
+              </div>
+              <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="expiryDate"
+                  placeholder="MM/YY"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="cvv"
+                  placeholder="Enter CVV"
+                />
+              </div>
+            </div>
+
+            <!-- Net Banking Fields -->
+            <div
+              id="netBankingFields"
+              class="paymentFields"
+              style="display: none;"
+            >
+              <div class="form-group">
+                <label for="bankName">Bank Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="bankName"
+                  placeholder="Enter bank name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="accountNumber">Account Number</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="accountNumber"
+                  placeholder="Enter account number"
+                />
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="btn btn-primary" onclick="sendMail()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Show/hide payment fields based on selection
+      document.querySelectorAll('input[name="paymentOption"]').forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+          document.querySelectorAll(".paymentFields").forEach((field) => {
+            field.style.display = "none";
+          });
+          const selectedPayment = event.target.value;
+          document.getElementById(selectedPayment + "Fields").style.display =
+            "block";
+        });
+      });
+
+      // Handle form submission
+      document.getElementById("contactPaymentForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Form submitted successfully!");
+        // Add your form handling logic here (e.g., AJAX or EmailJS).
+      });
+    </script>
+  </body>
+</html>

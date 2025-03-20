@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f5e7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .header {
+            background-color: #FFC107;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #dfdfdf;
+            border-radius: 6px;
+        }
+
+        .payment-options, .subscription-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-option, .subscription-option {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border: 2px solid #4a9a04;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-option:hover, .subscription-option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .payment-option img {
+            width: 40px;
+            margin-right: 15px;
+        }
+
+        .payment-option input, .subscription-option input {
+            margin-right: 10px;
+        }
+
+        .payment-details {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .payment-details input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #71580d;
+            border-radius: 6px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #f7b228;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #ebbd6d;
+        }
+
+        @media (max-width: 600px) {
+            .payment-container {
+                padding: 10px;
+                width: 90%;
+            }
+        }
+    </style>
+
+    <!-- Include SweetAlert2 for popups -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">DAABAA<span>Xpress</span></h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="meal_plan.html">Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="payment-container">
+        <h2>Pay Now</h2>
+
+        <!-- Step 1: Personal Details -->
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="tel" id="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+        </div>
+
+        <!-- Step 2: Payment Option -->
+        <div class="form-section">
+            <h3>Select Payment Option</h3>
+            <div class="payment-options">
+                <label class="payment-option">
+                    <input type="radio" name="payment-method" value="card" onchange="showPaymentDetails('card')" checked>
+                    <img src="https://img.icons8.com/color/48/000000/credit-card.png" alt="Card">
+                    Credit/Debit Card
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment-method" value="upi" onchange="showPaymentDetails('upi')">
+                    <img src="https://img.icons8.com/color/48/000000/google-pay.png" alt="UPI Payment">
+                    UPI Payment
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment-method" value="netbanking" onchange="showPaymentDetails('netbanking')">
+                    <img src="https://img.icons8.com/color/48/000000/bank-building.png" alt="Net Banking">
+                    Net Banking
+                </label>
+            </div>
+        </div>
+
+        <!-- Step 3: Payment Details -->
+        <div id="card-details" class="payment-details" style="display: block;">
+            <h3>Card Details</h3>
+            <input type="text" id="card-number" placeholder="Card Number" maxlength="16">
+            <input type="text" id="card-expiry" placeholder="Expiry Date (MM/YY)" maxlength="5">
+            <input type="text" id="card-cvv" placeholder="CVV" maxlength="3">
+        </div>
+
+        <div id="upi-details" class="payment-details">
+            <h3>UPI Details</h3>
+            <input type="text" id="upi-id" placeholder="Enter your UPI ID">
+        </div>
+
+        <div id="netbanking-details" class="payment-details">
+            <h3>Net Banking Details</h3>
+            <input type="text" id="bank-name" placeholder="Bank Name">
+            <input type="text" id="account-number" placeholder="Account Number">
+        </div>
+
+        <!-- Complete Payment Button -->
+        <button class="submit-btn" onclick="submitPayment()">Complete Payment</button>
+    </div>
+
+    <script>
+        // Google Apps Script Web App URL
+        const googleScriptURL = "https://script.google.com/macros/s/AKfycbxsd8BK3dza2pm5QphoFyqdZKB8UOYH5YIOEUwHY-LiKw9JeSVqdhWsnLfPVfGijFlHYg/exec";
+        
+        fetch(googleScriptURL, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: name,
+    email: email,
+    phone: mobile,
+    paymentMethod: paymentMethod,
+  }),
+})
+
+        
+        // Function to toggle payment details based on selected payment option
+        function showPaymentDetails(method) {
+            document.getElementById('card-details').style.display = method === 'card' ? 'block' : 'none';
+            document.getElementById('upi-details').style.display = method === 'upi' ? 'block' : 'none';
+            document.getElementById('netbanking-details').style.display = method === 'netbanking' ? 'block' : 'none';
+        }
+
+        // Function to submit payment
+        function submitPayment() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            // Validate personal details
+            if (!name || !email || !mobile) {
+                alert('Please fill in your personal details.');
+                return;
+            }
+
+            // Send data to the PHP backend
+            fetch('store_payment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: mobile,
+                    paymentMethod: paymentMethod,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Payment Successful!',
+                        text: 'Thank you for your payment.',
+                        showConfirmButton: false,
+                        timer: 3000
+                    }).then(() => {
+                        window.location.href = 'home.php';
+                    });
+                } else {
+                    alert('Error: ' + (data.error || 'There was an error processing the payment.'));
+                }
+            })
+            .catch(error => {
+                alert('An error occurred: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

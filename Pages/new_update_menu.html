@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Chef</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-image: url('bg12.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            backdrop-filter: brightness(0.8);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        .header {
+            width: 100%;
+            background-color: #8BC34A;
+            color: white;
+            padding: 1rem;
+            font-size: 1.5rem;
+            text-align: left;
+            padding-left: 2rem;
+        }
+        .form-box {
+            width: 50%;
+            max-width: 600px;
+            border: 2px solid black;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            gap: 1rem;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .upload-button {
+            background-color: #FFEB3B;
+            color: black;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            width: 100px;
+            align-self: center;
+            margin-top: 1rem;
+        }
+        .upload-button:hover {
+            background-color: #FDD835;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        Update Menu
+    </div>
+    <form class="form-box" action="store_menu.php" method="POST" enctype="multipart/form-data">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter dish name" required>
+
+        <label for="price">Price</label>
+        <input type="text" id="price" name="price" placeholder="Enter price" required>
+
+        <label for="upload-image">Upload image</label>
+        <input type="file" id="upload-image" name="upload-image" required>
+
+        <button type="submit" class="upload-button">Upload</button>
+    </form>
+</div>
+
+</body>
+</html>

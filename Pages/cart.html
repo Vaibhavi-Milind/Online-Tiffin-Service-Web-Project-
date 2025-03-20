@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Cart Container */
+        .cart-container {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Cart Title */
+        .cart-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Empty Cart Message */
+        .empty-cart {
+            font-size: 18px;
+            color: #666;
+            margin: 40px 0;
+        }
+
+        /* Responsive Items Grid */
+        .cart-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-info img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .item-price {
+            color: #888;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 500px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <div class="cart-title">Your Cart</div>
+
+        <!-- Uncomment the div below to simulate items in the cart -->
+        <!-- 
+        <div class="cart-items">
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="item-image.jpg" alt="Item Image">
+                    <div>
+                        <p class="item-name">Item 1</p>
+                        <p class="item-price">$10.00</p>
+                    </div>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="item-image.jpg" alt="Item Image">
+                    <div>
+                        <p class="item-name">Item 2</p>
+                        <p class="item-price">$15.00</p>
+                    </div>
+                </div>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+        </div>
+        -->
+
+        <!-- Empty Cart Message -->
+        <div class="empty-cart">Cart Empty</div>
+    </div>
+
+</body>
+</html>

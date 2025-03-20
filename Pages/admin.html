@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Full-page container */
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #D9534F;
+            color: #fff;
+            padding: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .content {
+            flex: 1;
+            position: relative;
+            background-image: url('bg11.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        /* Overlay styling */
+        .content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+            z-index: 0;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            background-color: #8BC34A;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            max-height: 180px;
+            z-index: 1; /* Ensures buttons appear above overlay */
+        }
+
+        .button:hover {
+            background-color: #7CB342;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 2rem;
+                padding: 1.5rem;
+            }
+
+            .content {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            .button {
+                font-size: 1.1rem;
+                padding: 1rem 2rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Welcome Admin
+        </div>
+        <div class="content">
+            <button class="button" onclick="addNewChef()">Add new Chefs</button>
+<button class="button" onclick="addNewAdmin()">View users</button>
+<button class="button" onclick="viewChefs()">View chefs</button>
+<button class="button" onclick="updateMenu()">Update menu</button>
+
+<script>
+function addNewChef() {
+    // Replace with the URL of the 'Add New Chef' page
+    window.location.href = 'new_chef.html';
+}
+
+function addNewAdmin() {
+    // Replace with the URL of the 'Add New Admin' page
+    window.location.href = 'users.php';
+}
+
+function viewChefs() {
+    // Replace with the URL of the 'View Chefs' page
+    window.location.href = 'chefs.php';
+}
+
+function updateMenu() {
+    // Replace with the URL of the 'Update Menu' page
+    window.location.href = 'new_update_menu.html';
+}
+</script>
+
+        </div>
+    </div>
+</body>
+</html>
